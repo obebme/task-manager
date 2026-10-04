@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "title": "Изучить PostgreSQL",
+        "description": "Разобрать SELECT, JOIN и индексы",
+        "completed": true
+    },
+    {
+        "id": 2,
+        "title": "Изучить Git",
+        "description": "Разобрать commit и branch",
+        "completed": false
+    }
+]
