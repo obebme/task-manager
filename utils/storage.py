@@ -18,3 +18,5 @@ def load_tasks() -> list[Task]:
         return []
 
     return [Task.from_dict(task_data) for task_data in data]
+
+
