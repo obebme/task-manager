@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Task Manager — FastAPI task management app">
+  <title>Task Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Task Manager">
+        <span class="brand-mark">✓</span>
+        <span>Task Manager</span>
+      </a>
+      <div class="topbar-right">
+        <span class="api-dot" id="apiStatusDot"></span>
+        <span id="apiStatusText">API подключение…</span>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">PERSONAL WORKSPACE</p>
+          <h1>Держи задачи<br><span>под контролем.</span></h1>
+          <p class="hero-copy">Простой, быстрый и аккуратный Task Manager поверх твоего FastAPI.</p>
+        </div>
+        <button class="primary-btn hero-btn" id="openCreateBtn">+ Новая задача</button>
+      </section>
+
+      <section class="stats-grid" aria-label="Статистика">
+        <article class="stat-card">
+          <div class="stat-label">Всего задач</div>
+          <div class="stat-value" id="totalCount">0</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">Выполнено</div>
+          <div class="stat-value" id="doneCount">0</div>
+        </article>
+        <article class="stat-card">
+          <div class="stat-label">В работе</div>
+          <div class="stat-value" id="activeCount">0</div>
+        </article>
+        <article class="stat-card progress-card">
+          <div class="stat-row">
+            <div class="stat-label">Прогресс</div>
+            <div class="stat-percent" id="progressPercent">0%</div>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+        </article>
+      </section>
+
+      <section class="toolbar">
+        <div class="search-wrap">
+          <span class="search-icon">⌕</span>
+          <input id="searchInput" type="search" placeholder="Поиск по задачам…" autocomplete="off">
+        </div>
+        <div class="filters" role="group" aria-label="Фильтр задач">
+          <button class="filter-btn active" data-filter="all">Все</button>
+          <button class="filter-btn" data-filter="active">В работе</button>
+          <button class="filter-btn" data-filter="done">Выполнено</button>
+        </div>
+        <button class="ghost-btn" id="refreshBtn" title="Обновить задачи">↻ Обновить</button>
+      </section>
+
+      <section>
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR LIST</p>
+            <h2>Задачи</h2>
+          </div>
+          <span class="result-count" id="resultCount">0 задач</span>
+        </div>
+        <div class="task-grid" id="taskList"></div>
+        <div class="empty-state hidden" id="emptyState">
+          <div class="empty-icon">✓</div>
+          <h3 id="emptyTitle">Задач пока нет</h3>
+          <p id="emptyText">Создай первую задачу — она сразу появится здесь.</p>
+          <button class="primary-btn" id="emptyCreateBtn">Создать задачу</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">TASK</p>
+          <h3 id="modalTitle">Новая задача</h3>
+        </div>
+        <button class="icon-btn" id="closeModalBtn" aria-label="Закрыть">×</button>
+      </div>
+      <form id="taskForm">
+        <label>
+          Название
+          <input id="titleInput" name="title" maxlength="120" required placeholder="Например: Изучить SQLAlchemy">
+        </label>
+        <label>
+          Описание
+          <textarea id="descriptionInput" name="description" rows="5" maxlength="500" placeholder="Что нужно сделать?"></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="ghost-btn" id="cancelBtn">Отмена</button>
+          <button type="submit" class="primary-btn" id="saveBtn">Создать</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

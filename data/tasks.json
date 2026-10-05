@@ -9,6 +9,12 @@
         "id": 2,
         "title": "Изучить Git",
         "description": "Разобрать commit и branch",
+        "completed": true
+    },
+    {
+        "id": 3,
+        "title": "Ожидание воды",
+        "description": "Ждать пока включится вода",
         "completed": false
     }
 ]
